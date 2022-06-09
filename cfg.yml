@@ -1,0 +1,24 @@
+proxy-rules:
+  # 允许通过的host allow-host "www.baidu.com,360.net"
+  allow-host: "*"
+  # 允许请求的地理位置（需要请求联网） allow-location: "山东,上海,杭州,beijing" 只要访问的地址在设置的内,就成功请求
+  allow-location: "*"
+  # 允许请求的时间段 allow-time: "8:00-16:00" 要求整点
+  allow-time: "*"
+  # 允许请求的网络路径（uri） allow-path: "/index.html,/wp-admin/,/wp-content/admin/"
+  allow-path: "*"
+  # 允许请求的ip列表 allow-ip-list: "192.168.248.0-192.168.248.255,192.168.1.1"
+  allow-ip-list: "127.0.0.1"
+  # 请求时需要携带的请求头（自定义）
+  #allow-token-header: {Cookie: "PHPSESSID=a02101a83b8296f298a4638a805672ea"}
+  allow-token-header: {}
+  # 允许的user-agent allow-user-agent
+  allow-user-agent:
+    - "*"
+  # 拒绝请求的ip列表 refuse-ip-list: "192.168.248.0-192.168.248.123,192.168.248.1"
+  refuse-ip-list: "-"
+proxy-handler:
+  # 规则匹配后不满足是否丢包
+  request-drop: false
+  # 当request-drop触发规则后则重定向
+  redirect: "https://360.net"
