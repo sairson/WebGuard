@@ -27,6 +27,8 @@ func (g *WebGuard) RunGuard() func(w http.ResponseWriter, r *http.Request) {
 		cfg.SetConfigType("yaml")
 		cfg.SetConfigFile(g.config)
 		if err := cfg.ReadInConfig(); err != nil {
+			// 配置文件没有找到,不影响规则,我们直接走规则控制函数
+			g.handler(w, r)
 			return
 		}
 		if g.hotLoading == true {
