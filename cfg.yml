@@ -12,6 +12,10 @@ proxy-rules:
   # 请求时需要携带的请求头（自定义）
   #allow-token-header: {Cookie: "PHPSESSID=a02101a83b8296f298a4638a805672ea"}
   allow-token-header: {}
+  # 允许的请求体字节最大长度(当allow-body-max-length 与 allow-body-min-length 同时为0时则表示不使用该规则)
+  allow-body-max-length: 0
+  # 允许的请求体字节最小长度
+  allow-body-min-length: 0
   # 允许的user-agent allow-user-agent
   allow-user-agent:
     - "*"

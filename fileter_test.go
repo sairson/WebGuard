@@ -1,7 +1,6 @@
 package WebGuard
 
 import (
-	"fmt"
 	"net/http"
 	"testing"
 )
@@ -21,5 +20,5 @@ func Test(t *testing.T) {
 }
 
 func (b *baseHandle) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	fmt.Println(WebGuardFilter(r, "cfg.yml", true))
+
 }

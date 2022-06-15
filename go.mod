@@ -4,15 +4,19 @@ go 1.17
 
 require (
 	github.com/axgle/mahonia v0.0.0-20180208002826-3358181d7394
+	github.com/fsnotify/fsnotify v1.5.4
 	github.com/go-resty/resty/v2 v2.7.0
+	github.com/k0kubun/pp v3.0.1+incompatible
 	github.com/spf13/viper v1.12.0
 	github.com/tidwall/gjson v1.14.1
 )
 
 require (
-	github.com/fsnotify/fsnotify v1.5.4 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
+	github.com/k0kubun/colorstring v0.0.0-20150214042306-9440f1994b88 // indirect
 	github.com/magiconair/properties v1.8.6 // indirect
+	github.com/mattn/go-colorable v0.1.12 // indirect
+	github.com/mattn/go-isatty v0.0.14 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/pelletier/go-toml v1.9.5 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.1 // indirect

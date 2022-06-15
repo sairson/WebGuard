@@ -3,6 +3,7 @@ package WebGuard
 import (
 	"fmt"
 	"github.com/spf13/viper"
+	"io/ioutil"
 	"net/http"
 	"strings"
 	"time"
@@ -24,6 +25,8 @@ func WebGuardFilter(cfg *viper.Viper, req *http.Request) (bool, error) {
 		allowTokenHeader = cfg.GetStringMapString("proxy-rules.allow-token-header")
 		allowUserAgent   = cfg.GetStringSlice("proxy-rules.allow-user-agent")
 		refuseIpList     = cfg.GetString("proxy-rules.refuse-ip-list")
+		allowMaxLength   = cfg.GetInt("proxy-rules.allow-body-max-length")
+		allowMinLength   = cfg.GetInt("proxy-rules.allow-body-min-length")
 	)
 	if allowHost != "" && allowHost != "*" {
 		hosts := strings.Split(allowHost, ",")
@@ -136,6 +139,15 @@ func WebGuardFilter(cfg *viper.Viper, req *http.Request) (bool, error) {
 		}
 		if _, status := _find(newList, address); status == true {
 			return false, fmt.Errorf("refuse-ip-list rules trigger")
+		}
+	}
+	if allowMaxLength != 0 && allowMinLength != 0 {
+		body, err := ioutil.ReadAll(req.Body)
+		if err != nil {
+			return false, fmt.Errorf("parse request body length is error")
+		}
+		if len(body) < allowMinLength || len(body) > allowMaxLength {
+			return false, fmt.Errorf("allow-body-length rules trigger")
 		}
 	}
 	return true, nil
