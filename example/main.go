@@ -16,6 +16,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("ok")
 }
 
-func debug(in interface{}) {
+func debug(in ...interface{}) {
 	fmt.Println(in)
 }

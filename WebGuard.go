@@ -11,10 +11,10 @@ type WebGuard struct {
 	config     string                                       // 配置文件路径
 	handler    func(w http.ResponseWriter, r *http.Request) // http处理函数
 	hotLoading bool                                         // 热加载
-	logger     func(in interface{})
+	logger     func(in ...interface{})
 }
 
-func New(cfg string, hotLoading bool, logger func(in interface{}), handler func(w http.ResponseWriter, r *http.Request)) *WebGuard {
+func New(cfg string, hotLoading bool, logger func(in ...interface{}), handler func(w http.ResponseWriter, r *http.Request)) *WebGuard {
 	return &WebGuard{
 		config:     cfg,
 		handler:    handler,
