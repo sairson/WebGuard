@@ -5,6 +5,7 @@ import (
 	"github.com/spf13/viper"
 	"io/ioutil"
 	"net/http"
+	"path/filepath"
 	"strings"
 	"time"
 )
@@ -27,6 +28,7 @@ func WebGuardFilter(cfg *viper.Viper, req *http.Request) (bool, error) {
 		refuseIpList     = cfg.GetString("proxy-rules.refuse-ip-list")
 		allowMaxLength   = cfg.GetInt("proxy-rules.allow-body-max-length")
 		allowMinLength   = cfg.GetInt("proxy-rules.allow-body-min-length")
+		allowFileExt     = cfg.GetString("proxy-rules.allow-file-ext")
 	)
 	if allowHost != "" && allowHost != "*" {
 		hosts := strings.Split(allowHost, ",")
@@ -122,6 +124,22 @@ func WebGuardFilter(cfg *viper.Viper, req *http.Request) (bool, error) {
 			return false, fmt.Errorf("allow-path rules trigger")
 		}
 	}
+
+	// 判断ext文件是否正确
+	if allowFileExt != "" && allowFileExt != ".*" {
+		fileExt := strings.Split(allowFileExt, ",")
+		var isExt = false
+		for _, p := range fileExt {
+			if filepath.Ext(req.URL.Path) == p {
+				isExt = true
+				break
+			}
+		}
+		if isExt == false {
+			return false, fmt.Errorf("allow-file-ext rules trigger")
+		}
+	}
+
 	// 黑名单判断
 	if refuseIpList != "" && refuseIpList != "-" {
 		ipList := strings.Split(refuseIpList, ",") // 获取拒绝的

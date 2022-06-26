@@ -15,7 +15,6 @@ func NewProxy(proxyURL string, dropType bool) (*httputil.ReverseProxy, error) {
 	// 代理服务器转发地址
 	proxy := httputil.NewSingleHostReverseProxy(destinationURL)
 	// dropType检查对请求的响应是否改变
-	proxy.ErrorLog = nil
 	if dropType == true {
 		proxy.ModifyResponse = modifyResponse() // 修改对请求的响应
 	}

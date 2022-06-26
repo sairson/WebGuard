@@ -5,10 +5,10 @@ proxy-rules:
   allow-location: "*"
   # 允许请求的时间段 allow-time: "8:00-16:00" 要求整点
   allow-time: "*"
-  # 允许请求的网络路径（uri） allow-path: "/index.html,/wp-admin/,/wp-content/admin/"
+  # 允许请求的网络路径（uri） allow-path: "/index.html,/wp-admin/,/wp-content/admin/,/admin/*"
   allow-path: "*"
   # 允许请求的ip列表 allow-ip-list: "192.168.248.0-192.168.248.255,192.168.1.1"
-  allow-ip-list: "127.0.0.1"
+  allow-ip-list: "*"
   # 请求时需要携带的请求头（自定义）
   #allow-token-header: {Cookie: "PHPSESSID=a02101a83b8296f298a4638a805672ea"}
   allow-token-header: {}
@@ -19,6 +19,8 @@ proxy-rules:
   # 允许的user-agent allow-user-agent
   allow-user-agent:
     - "*"
+  # 允许请求的文件名后缀 allow-file-ext: ".*" 或 allow-file-ext: ".jsp,.jpg,.png"
+  allow-file-ext: ".php,.jsp"
   # 拒绝请求的ip列表 refuse-ip-list: "192.168.248.0-192.168.248.123,192.168.248.1"
   refuse-ip-list: "-"
 proxy-handler:

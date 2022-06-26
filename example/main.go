@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	guard := WebGuard.New("cfg.yml", true, nil, handler)
+	guard := WebGuard.New("cfg.yml", true, debug, handler)
 	http.HandleFunc("/", guard.RunGuard())
 	http.ListenAndServe(":8555", nil)
 }

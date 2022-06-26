@@ -8,7 +8,7 @@ import (
 type baseHandle struct {
 }
 
-func Test(t *testing.T) {
+func _Test(t *testing.T) {
 	handle := &baseHandle{}
 	http.Handle("/", handle)
 	server := &http.Server{
